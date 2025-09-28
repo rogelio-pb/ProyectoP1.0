@@ -13,7 +13,9 @@ private:
 
 public:
     // Constructor con fecha opcional
-    Ticket(int id, const std::string& title, const std::string& desc, ESTADO est = PENDIENTE, const std::string& fecha = "")
+    Ticket
+        (int id, const std::string& title, const std::string& desc,
+         ESTADO est = PENDIENTE, const std::string& fecha = "")
         : ID(id), titulo(title), descripcion(desc) {
         fechaC = fecha.empty() ? "Fecha no asignada" : fecha;
         switch (est) {
@@ -30,7 +32,7 @@ public:
     std::string getFecha() const { return fechaC; }
 
     void setTitulo(const std::string& nuevoTitulo) { titulo = nuevoTitulo; }
-    void setDescripcion(const std::string& nuevaDescripcion) { descripcion = nuevaDescripcion; }
+    void setDescripcion(const std::string& nuevaD) { descripcion = nuevaD; }
 
     // Cambiar estado con validación de transición
     bool cambioEstado(ESTADO nuevoEstado) {
