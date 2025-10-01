@@ -26,45 +26,45 @@ public:// Metodos para gestionar los tickets
 		auto it = std::remove_if(tickets.begin(), tickets.end(), // Buscar el ticket por su ID con std::remove_if 
 			[id](const Ticket& t) { return t.getID() == id; }); // aqui se usa una lambda para comparar el ID del ticket con el ID proporcionado y ver si es igual
 
-        if (it != tickets.end()) {
-            tickets.erase(it, tickets.end());
-            std::cout << "Ticket con ID " << id << " eliminado.\n";
+		if (it != tickets.end()) {// Si se encontró el ticket, eliminarlo y mostrar mensaje de confirmación
+			tickets.erase(it, tickets.end());// Eliminar el ticket del vector de tickets 
+			std::cout << "Ticket con ID " << id << " eliminado.\n";// Confirmar la eliminación del ticket 
         }
-        else {
-            std::cout << "Ticket con ID " << id << " no encontrado.\n";
+		else {// Si no se encontró el ticket, mostrar mensaje de error
+			std::cout << "Ticket con ID " << id << " no encontrado.\n";// Mensaje de error si no se encuentra el ticket
         }
     }
 
-void editarTicket(int id,const std::string& nuevoTitulo,const std::string& nuevaD) 
+	void editarTicket(int id, const std::string& nuevoTitulo, const std::string& nuevaD) // Editar el título y la descripción de un ticket por su ID
     {
-        for (auto& t : tickets) {
-            if (t.getID() == id) {
-                t.setTitulo(nuevoTitulo);
-                t.setDescripcion(nuevaD);
-                std::cout << "Ticket ID " << id << " editado.\n";
-                return;
+		for (auto& t : tickets) {// Recorrer el vector de tickets en bucle hasta encontrar el ticket con el ID proporcionado
+			if (t.getID() == id) {// Si se encuentra el ticket con el ID proporcionado, actualizar su título y descripción
+				t.setTitulo(nuevoTitulo);// Actualizar el título del ticket
+				t.setDescripcion(nuevaD);// Actualizar la descripción del ticket
+				std::cout << "Ticket ID " << id << " editado.\n";// Confirmar la edición del ticket
+				return;// Salir de la función después de editar el ticket   
             }
         }
-        std::cout << "Ticket con ID " << id << " no encontrado.\n";
+		std::cout << "Ticket con ID " << id << " no encontrado.\n";// Mensaje de error si no se encuentra el ticket
     }
 
-    void cambiarEstadoTicket(int id, ESTADO nuevoEstado) {
-        for (auto& t : tickets) {
-            if (t.getID() == id) {
-                t.cambioEstado(nuevoEstado);
-                return;
+	void cambiarEstadoTicket(int id, ESTADO nuevoEstado) {// Cambiar el estado de un ticket por su ID donde busca el ticket por su ID y llama al método cambioEstado del ticket
+		for (auto& t : tickets) {// Recorrer el vector de tickets en bucle hasta encontrar el ticket con el ID proporcionado
+			if (t.getID() == id) {// Si se encuentra el ticket con el ID proporcionado, intentar cambiar su estado
+				t.cambioEstado(nuevoEstado);// Intentar cambiar el estado del ticket en clase Ticket
+				return;// Salir de la función después de intentar cambiar el estado del ticket
             }
         }
-        std::cout << "Ticket con ID " << id << " no encontrado.\n";
+		std::cout << "Ticket con ID " << id << " no encontrado.\n";// Mensaje de error si no se encuentra el ticket
     }
 
-    void listarTickets() const {
-        if (tickets.empty()) {
-            std::cout << "No hay tickets registrados.\n";
-            return;
+	void listarTickets() const {// Listar todos los tickets almacenados en el vector de tickets
+		if (tickets.empty()) {// Si no hay tickets, mostrar mensaje
+			std::cout << "No hay tickets registrados.\n";//Mensaje si no hay tickets
+			return;// Salir de la función si no hay tickets
         }
-        for (const auto& t : tickets) {
-            t.mostrar();
-        }
-    }
-};
+		for (const auto& t : tickets) {// Recorrer el vector de tickets y mostrar cada ticket
+			t.mostrar();// Mostrar el ticket actual
+		}// Fin del bucle for
+	}// Fin de la clase GestorTicket
+};// Fin del archivo GestorTiket.h
